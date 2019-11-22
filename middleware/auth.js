@@ -9,6 +9,7 @@ module.exports = async (req, res, next) => {
       message: '토큰이 전송되지 않았습니다.',
     });
   }
+
   try {
     const decoded = await tokenLib.verifyToken(token);
     if (decoded.sub !== 'token') {

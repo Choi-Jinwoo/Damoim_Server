@@ -41,7 +41,7 @@ exports.createMeeting = async (req, res) => {
       message: '성공',
     });
   } catch (err) {
-    console.log(err.message);
+    console.log(err);
     return res.status(200).json({
       status: 500,
       message: '서버 오류',
@@ -57,16 +57,20 @@ exports.getMeetings = async (req, res) => {
       where: {
         date: today,
       },
+      raw: true,
     });
 
     for (let i = 0; i < meetings.length; i++) {
       const joined_member = await models.meetingMember.findAll({
-        meeting_idx: meetings[i].idx,
+        where: {
+          meeting_idx: meetings[i].idx,
+        },
+        raw: true,
       });
 
       meetings[i].joined_member = joined_member.length;
     }
-
+    console.log(meetings);
     return res.status(200).json({
       status: 200,
       message: '성공',
