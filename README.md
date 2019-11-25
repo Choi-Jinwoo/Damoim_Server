@@ -16,7 +16,7 @@
 ## .env
 
 >```
->JWT_SECRET="DAMOIM_JWT___token"
+>JWT_SECRET=SECRET
 >```
 
 ## start
